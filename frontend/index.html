@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="background-animation">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <div class="container fadeIn">
+    <div class="header">
+      <h1 class="title">Discover Your Aura</h1>
+      <p class="subtitle">Unveil the power of your presence</p>
+    </div>
+
+    <form id="auraForm" class="form slideInUp">
+      <div class="input-group">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name.." required pattern="[A-Za-z\s]+" title="Only alphabets allowed">
+      </div>
+
+      <div class="input-group">
+        <label for="character">Favorite Fictional Character:</label>
+        <input type="text" id="character" name="character" placeholder="Enter a character.." required>
+      </div>
+
+      <div class="input-group">
+        <label>Your Current Mood:</label>
+        <div class="options">
+          <label>
+            <input type="radio" name="mood" value="good" required> Good
+          </label>
+          <label>
+            <input type="radio" name="mood" value="average"> Average
+          </label>
+          <label>
+            <input type="radio" name="mood" value="bad"> Bad
+          </label>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Are you a Bhimrao Ambedkar fan?(-30 aura for yes,choose wisely)</label>
+        <div class="options">
+          <label>
+            <input type="radio" name="ambedkarFan" value="yes" required> Yes
+          </label>
+          <label>
+            <input type="radio" name="ambedkarFan" value="no"> No
+          </label>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Are you above six feet?</label>
+        <div class="options">
+          <label>
+            <input type="radio" name="sixFeet" value="yes" required> Yes
+          </label>
+          <label>
+            <input type="radio" name="sixFeet" value="no"> No
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn scaleUp">Calculate Aura</button>
+    </form>
+
+    <div class="result hidden">
+      <h2 class="result-title">Your Aura Result</h2>
+      <p id="auraOutput" class="result-text"></p>
+      <canvas id="auraChart"></canvas>
+      <!-- Share buttons -->
+      <button id="shareWhatsAppButton" class="btn">Share on WhatsApp</button>
+      <button id="shareLinkedInButton" class="btn">Share on LinkedIn</button>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
