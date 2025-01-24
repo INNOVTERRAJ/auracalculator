@@ -14,7 +14,7 @@ document.getElementById("auraForm").addEventListener("submit", async (e) => {
 
   try {
     // Send data to the server
-    const response = await fetch("http://localhost:5000/api/calculate", {
+    const response = await fetch("https://auracalculator.onrender.com/api/calculate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
