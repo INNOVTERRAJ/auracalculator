@@ -1,6 +1,10 @@
 document.getElementById("auraForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-  
+
+  const calculateButton = document.querySelector("#calculateButton");
+  calculateButton.textContent = "Calculating...";
+  calculateButton.disabled = true;
+
   // Hide previous results
   const resultDiv = document.querySelector(".result");
   const output = document.getElementById("auraOutput");
@@ -34,6 +38,9 @@ document.getElementById("auraForm").addEventListener("submit", async (e) => {
     console.error("Error calculating aura:", error.message);
     output.innerHTML = `<span style="color: red;">Error: ${error.message}</span>`;
     resultDiv.classList.remove("hidden");
+  } finally {
+    calculateButton.textContent = "Calculate";
+    calculateButton.disabled = false;
   }
 });
 
@@ -56,15 +63,13 @@ function displayResult(result) {
 }
 
 function createChart(aura, presencePower) {
-  const ctx = document.getElementById("auraChart").getContext("2d");
-
-  // Clear the canvas before creating a new chart
-  if (Chart.getChart("auraChart")) {
-    Chart.getChart("auraChart").destroy();
+  const existingChart = Chart.getChart("auraChart");
+  if (existingChart) {
+    existingChart.destroy();
   }
 
   // Create Chart.js bar chart
-  new Chart(ctx, {
+  new Chart(document.getElementById("auraChart").getContext("2d"), {
     type: "bar",
     data: {
       labels: ["Aura", "Presence Power"],
@@ -97,26 +102,20 @@ function createChart(aura, presencePower) {
 
 // Share Results on WhatsApp
 document.getElementById("shareWhatsAppButton").addEventListener("click", function () {
-  const auraResult = document.getElementById("auraOutput").innerHTML;
-  const url = window.location.href; // Current URL, can be replaced with any other link
-  
-  // Define the text for sharing on WhatsApp
+  const auraResult = document.getElementById("auraOutput").innerText;
+  const url = window.location.href;
+
   const shareText = `I discovered my aura: ${auraResult}. Check it out: ${url}`;
-  
-  // WhatsApp share URL
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
   window.open(whatsappUrl, '_blank');
 });
 
 // Share Results on LinkedIn
 document.getElementById("shareLinkedInButton").addEventListener("click", function () {
-  const auraResult = document.getElementById("auraOutput").innerHTML;
-  const url = window.location.href; // Current URL, can be replaced with any other link
-  
-  // Define the text for sharing on LinkedIn
+  const auraResult = document.getElementById("auraOutput").innerText;
+  const url = window.location.href;
+
   const shareText = `I discovered my aura: ${auraResult}. Check it out: ${url}`;
-  
-  // LinkedIn share URL
   const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=My Aura&summary=${encodeURIComponent(shareText)}`;
   window.open(linkedinUrl, '_blank');
 });
