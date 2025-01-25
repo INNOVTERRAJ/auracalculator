@@ -1,7 +1,8 @@
 document.getElementById("auraForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const calculateButton = document.querySelector("#calculateButton");
+ // Get the button and set it to "Calculating..."
+  const calculateButton = document.querySelector(".btn.scaleUp");
   calculateButton.textContent = "Calculating...";
   calculateButton.disabled = true;
 
